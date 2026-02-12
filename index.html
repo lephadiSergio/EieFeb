@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Are You Coming? 💘</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #b12b2b;
+      color: white;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.2s ease;
+    }
+
+    #yesBtn {
+      background: #ff7eb3;
+      color: black;
+    }
+
+    #noBtn {
+      background: #222;
+      color: white;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ffd6d6;
+    }
+
+    #poster {
+      display: none;
+      max-width: 90%;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="question">Are you coming to our event? 🥹</h1>
+
+    <div id="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <p id="message"></p>
+
+    <img id="poster" src="poster.jpg" alt="Event Poster">
+
+    <audio id="song" src="song.mp3"></audio>
+  </div>
+
+  <script>
+    let yesBtn = document.getElementById("yesBtn");
+    let noBtn = document.getElementById("noBtn");
+    let message = document.getElementById("message");
+    let poster = document.getElementById("poster");
+    let song = document.getElementById("song");
+    let question = document.getElementById("question");
+    let buttons = document.getElementById("buttons");
+
+    let yesSize = 1;
+
+    noBtn.addEventListener("click", () => {
+      message.innerText = "Answer not accepted 😤";
+      yesSize += 0.2;
+      yesBtn.style.transform = `scale(${yesSize})`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      question.innerText = "YAY! See you there! 💖";
+      buttons.style.display = "none";
+      message.style.display = "none";
+      poster.style.display = "block";
+      song.play();
+    });
+  </script>
+</body>
+</html>
