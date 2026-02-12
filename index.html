@@ -54,11 +54,59 @@
       color: #ffd6d6;
     }
 
+    /* Poster with red electric glow */
     #poster {
       display: none;
       max-width: 90%;
       border-radius: 12px;
       margin-top: 20px;
+      box-shadow: 
+        0 0 10px #ff1e1e,
+        0 0 20px #ff1e1e,
+        0 0 40px #ff4d4d,
+        0 0 80px #ff0000;
+      animation: electricPulse 1.2s infinite alternate;
+      z-index: 2;
+      position: relative;
+    }
+
+    @keyframes electricPulse {
+      from {
+        box-shadow:
+          0 0 5px #ff1e1e,
+          0 0 15px #ff1e1e,
+          0 0 30px #ff4d4d,
+          0 0 60px #ff0000;
+      }
+      to {
+        box-shadow:
+          0 0 15px #ff4d4d,
+          0 0 30px #ff4d4d,
+          0 0 60px #ff0000,
+          0 0 120px #ff0000;
+      }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 4s linear forwards;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -87,6 +135,7 @@
     const buttons = document.getElementById("buttons");
 
     let yesSize = 1;
+    let heartInterval;
 
     function moveNoButton() {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -99,6 +148,19 @@
       yesBtn.style.transform = `scale(${yesSize})`;
     }
 
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }
+
     noBtn.addEventListener("mouseenter", moveNoButton);
     noBtn.addEventListener("click", moveNoButton);
 
@@ -108,6 +170,9 @@
       message.style.display = "none";
       poster.style.display = "block";
       song.play();
+
+      // Start floating hearts
+      heartInterval = setInterval(createHeart, 300);
     });
   </script>
 </body>
