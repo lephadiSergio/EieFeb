@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Are You Coming? 💘</title>
+  <title>Are You Coming? 💙</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #b12b2b;
+      background: #0a1b2a;
       color: white;
       text-align: center;
       height: 100vh;
@@ -38,12 +38,12 @@
     }
 
     #yesBtn {
-      background: #ff7eb3;
-      color: black;
+      background: #7dd3fc;
+      color: #022c22;
     }
 
     #noBtn {
-      background: #222;
+      background: #0f172a;
       color: white;
       position: absolute;
     }
@@ -51,20 +51,20 @@
     #message {
       margin-top: 20px;
       font-size: 18px;
-      color: #ffd6d6;
+      color: #bae6fd;
     }
 
-    /* Poster with red electric glow */
+    /* Poster with blue electric glow */
     #poster {
       display: none;
       max-width: 90%;
       border-radius: 12px;
       margin-top: 20px;
       box-shadow: 
-        0 0 10px #ff1e1e,
-        0 0 20px #ff1e1e,
-        0 0 40px #ff4d4d,
-        0 0 80px #ff0000;
+        0 0 10px #38bdf8,
+        0 0 20px #38bdf8,
+        0 0 40px #0ea5e9,
+        0 0 80px #0284c7;
       animation: electricPulse 1.2s infinite alternate;
       z-index: 2;
       position: relative;
@@ -73,29 +73,30 @@
     @keyframes electricPulse {
       from {
         box-shadow:
-          0 0 5px #ff1e1e,
-          0 0 15px #ff1e1e,
-          0 0 30px #ff4d4d,
-          0 0 60px #ff0000;
+          0 0 5px #38bdf8,
+          0 0 15px #38bdf8,
+          0 0 30px #0ea5e9,
+          0 0 60px #0284c7;
       }
       to {
         box-shadow:
-          0 0 15px #ff4d4d,
-          0 0 30px #ff4d4d,
-          0 0 60px #ff0000,
-          0 0 120px #ff0000;
+          0 0 15px #7dd3fc,
+          0 0 30px #38bdf8,
+          0 0 60px #0ea5e9,
+          0 0 120px #0284c7;
       }
     }
 
-    /* Floating hearts */
+    /* Floating blue hearts */
     .heart {
       position: fixed;
       bottom: -20px;
       font-size: 24px;
       animation: floatUp 4s linear forwards;
-      opacity: 0.8;
+      opacity: 0.85;
       pointer-events: none;
       z-index: 1;
+      filter: drop-shadow(0 0 6px #38bdf8);
     }
 
     @keyframes floatUp {
@@ -151,9 +152,9 @@
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
-      heart.innerText = "❤️";
+      heart.innerText = "💙";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.fontSize = Math.random() * 18 + 18 + "px";
       document.body.appendChild(heart);
 
       setTimeout(() => {
@@ -165,14 +166,13 @@
     noBtn.addEventListener("click", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
-      question.innerText = "YAY! See you there! 💖";
+      question.innerText = "YAY! See you there! 💙⚡";
       buttons.style.display = "none";
       message.style.display = "none";
       poster.style.display = "block";
       song.play();
 
-      // Start floating hearts
-      heartInterval = setInterval(createHeart, 300);
+      heartInterval = setInterval(createHeart, 280);
     });
   </script>
 </body>
